@@ -39,7 +39,7 @@ class TaskViewModel:ViewModel(),
         }
     init {
         if (isConnected){
-            localRepo.getTasks(this)
+            //localRepo.getTasks(this)
             serverRepo.getTasks(object : MyCustomCallback<TaskModel>{
                 override fun onSuccess(listModel: List<TaskModel>) {
                     _tasks.value = listModel

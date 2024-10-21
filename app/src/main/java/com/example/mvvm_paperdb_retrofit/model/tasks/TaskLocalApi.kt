@@ -138,7 +138,7 @@ class TaskLocalApi:TaskInterface {
 
     override fun syncData(listTasks: List<TaskModel>, callback: MyCustomCallback<TaskModel>) {
         try {
-            Paper.book().write("task", listTasks)
+            Paper.book().write(TASK_TABLE, listTasks)
             callback.notify("SYNC DATA WITH SERVER")
         }catch (ex:Exception){
             callback.onFailure(ex.toString())

@@ -1,7 +1,6 @@
 package com.example.mvvm_paperdb_retrofit.retrofit
 
 import com.example.mvvm_paperdb_retrofit.model.tasks.TaskModel
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -34,6 +33,6 @@ interface TaskServerInterface {
     fun completeTask(@Path("id") id:String, @Field("isCompleted") isCompleted:Boolean) : Call<TaskModel>
 
     @HEAD("/")
-    fun checkInternetConnection() : Call<ResponseBody>
+    fun checkInternetConnection() : Call<Void>
 
 }
