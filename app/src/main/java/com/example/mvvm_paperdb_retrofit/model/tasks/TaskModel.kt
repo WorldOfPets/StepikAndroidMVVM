@@ -9,6 +9,5 @@ data class TaskModel(
     var description:String? = null,
     var isCompleted:Boolean? = null,
     var timeCreated:String? = null,
-    var timeDeadLine:String? = null,
-    var uuid:String? = null
+    var timeDeadLine:String? = null
     )
