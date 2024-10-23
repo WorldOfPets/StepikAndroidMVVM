@@ -33,14 +33,14 @@ class AddUpdateTaskFragment : Fragment() {
 
 
         val timeSetListener =
-            TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+            TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 cal.set(Calendar.MINUTE, minute)
                 updateDateInView()
             }
 
         val dateSetListener =
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)

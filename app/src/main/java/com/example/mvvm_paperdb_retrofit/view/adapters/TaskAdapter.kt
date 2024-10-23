@@ -44,6 +44,7 @@ class TaskAdapter(
                 taskViewModel.deleteTask(item.id!!)
             }
             if(item.isCompleted!!){
+
                 chbxSetCompleted.visibility = View.GONE
 
             }else{

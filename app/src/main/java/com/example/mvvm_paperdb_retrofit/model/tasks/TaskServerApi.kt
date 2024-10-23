@@ -50,10 +50,8 @@ class TaskServerApi :TaskInterface {
     override fun addTask(task: TaskModel, callback: MyCustomCallback<TaskModel>) {
         try {
             val cal = Calendar.getInstance()
-            val date = Date(cal.timeInMillis) // 2077-02-22T07:46:53.082Z
             val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale("RU"))
-            val formattedDate = formatter.format(date)
-            task.timeCreated = formattedDate
+            task.timeCreated = formatter.format(Date(cal.timeInMillis))
             task.isCompleted = false
             service.addTask(task).enqueue(object : Callback<TaskModel>{
                 override fun onResponse(p0: Call<TaskModel>, p1: Response<TaskModel>) {
@@ -71,7 +69,7 @@ class TaskServerApi :TaskInterface {
 
     override fun updateTask(task: TaskModel, callback: MyCustomCallback<TaskModel>) {
         try {
-            if (!task.id.isNullOrEmpty()){
+            if (task.id != null){
                 service.updateTask(task.id!!, task).enqueue(object : Callback<TaskModel>{
                     override fun onResponse(p0: Call<TaskModel>, p1: Response<TaskModel>) {
                         callback.onSuccess(p1.body() ?: TaskModel())
@@ -84,7 +82,6 @@ class TaskServerApi :TaskInterface {
             }else{
                 callback.onFailure("TASK ID IS NULL OR EMPTY")
             }
-
         }catch (ex:Exception){
             callback.onFailure(ex.toString())
         }
