@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Paper.init(this@MainActivity)
-//        val policy = ThreadPolicy.Builder().permitAll().build()
-//        StrictMode.setThreadPolicy(policy)
+/*        val policy = ThreadPolicy.Builder().permitAll().build()
+       StrictMode.setThreadPolicy(policy)*/
     }
 }

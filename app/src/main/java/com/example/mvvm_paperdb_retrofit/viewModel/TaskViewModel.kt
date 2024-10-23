@@ -38,25 +38,26 @@ class TaskViewModel:ViewModel(),
             _tasks.value = _tasks.value
         }
     init {
+        localRepo.getTasks(this)
         if (isConnected){
-            //localRepo.getTasks(this)
             serverRepo.getTasks(object : MyCustomCallback<TaskModel>{
                 override fun onSuccess(listModel: List<TaskModel>) {
-                    _tasks.value = listModel
-                    localRepo.syncData(listModel, object : MyCustomCallback<TaskModel>{
-                        override fun notify(msg: String) {
-                            _notifyMsg.value = msg
-                        }
-                    })
+                    if (_tasks.value != listModel) {
+                        _tasks.value = listModel
+                        localRepo.syncData(listModel, object : MyCustomCallback<TaskModel>{
+                            override fun notify(msg: String) {
+                                _notifyMsg.value = msg
+                            }
+                        })
+                    }
                 }
             })
-        }else{
-            localRepo.getTasks(this@TaskViewModel)
         }
         _currentTask.value = null
     }
 
     fun completeTask(id:String){
+        //localRepo.getTasks(this)
         if (isConnected){
             serverRepo.completeTask(id, object : MyCustomCallback<TaskModel>{
                 override fun onSuccess(model: TaskModel) {
@@ -78,7 +79,6 @@ class TaskViewModel:ViewModel(),
         }else{
             localRepo.addTask(task, this@TaskViewModel)
         }
-
     }
     fun setCurrentTask(task: TaskModel?){
         _currentTask.value = task
