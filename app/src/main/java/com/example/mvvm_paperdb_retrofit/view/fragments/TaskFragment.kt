@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvm_paperdb_retrofit.R
+import com.example.mvvm_paperdb_retrofit.TaskApplication
 import com.example.mvvm_paperdb_retrofit.databinding.FragmentTaskListBinding
 import com.example.mvvm_paperdb_retrofit.view.adapters.TaskAdapter
 import com.example.mvvm_paperdb_retrofit.viewModel.TaskViewModel
@@ -26,7 +27,7 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTaskListBinding.inflate(layoutInflater, container, false)
-        taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
+        taskViewModel = (requireActivity().application as TaskApplication).taskViewModel
 
         taskViewModel.tasks.observe(viewLifecycleOwner){ listTasks ->
             if (!listTasks.isNullOrEmpty()){

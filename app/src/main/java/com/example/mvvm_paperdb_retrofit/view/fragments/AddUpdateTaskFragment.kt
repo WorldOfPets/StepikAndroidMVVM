@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.example.mvvm_paperdb_retrofit.TaskApplication
 import com.example.mvvm_paperdb_retrofit.databinding.FragmentAddTaskBinding
 import com.example.mvvm_paperdb_retrofit.model.tasks.TaskModel
 import com.example.mvvm_paperdb_retrofit.viewModel.TaskViewModel
@@ -29,7 +30,7 @@ class AddUpdateTaskFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAddTaskBinding.inflate(layoutInflater, container, false)
-        taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
+        taskViewModel = (requireActivity().application as TaskApplication).taskViewModel
 
 
         val timeSetListener =

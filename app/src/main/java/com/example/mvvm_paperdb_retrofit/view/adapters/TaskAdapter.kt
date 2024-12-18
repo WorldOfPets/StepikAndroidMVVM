@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_paperdb_retrofit.R
+import com.example.mvvm_paperdb_retrofit.TaskApplication
 import com.example.mvvm_paperdb_retrofit.databinding.FragmentTaskItemBinding
 import com.example.mvvm_paperdb_retrofit.model.tasks.TaskModel
 import com.example.mvvm_paperdb_retrofit.viewModel.TaskViewModel
@@ -71,7 +72,7 @@ class TaskAdapter(
         val timeView:TextView = binding.time
         val containerTask:LinearLayout = binding.taskContainer
         val imgBtnDeleteTask:ImageButton = binding.imgBtnDeleteTasks
-        val taskViewModel = ViewModelProvider(requireActivity)[TaskViewModel::class.java]
+        val taskViewModel = (requireActivity.application as TaskApplication).taskViewModel
     }
 
 }
